@@ -1,0 +1,52 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <android.support.v7.widget.RecyclerView
+
+
+        android:id="@+id/recyclerview"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_collapseMode="pin"/>
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@android:color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <com.zhangrui.huiju.widget.CircleImageView
+            android:id="@+id/header_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/head"
+            android:layout_gravity="center_vertical"
+            />
+        <TextView
+            android:id="@+id/header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1000"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+        <ImageView
+            android:id="@+id/header_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu_share"
+            android:layout_gravity="center_vertical|end"
+            />
+    </LinearLayout>
+</FrameLayout>
