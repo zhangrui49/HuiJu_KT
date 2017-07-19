@@ -1,6 +1,7 @@
 package com.zhangrui.huiju.activity
 
 import android.Manifest
+import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -24,6 +25,16 @@ import com.zhy.adapter.recyclerview.CommonAdapter
 import com.zhy.adapter.recyclerview.base.ViewHolder
 import kotlinx.android.synthetic.main.common_data_layout.*
 import org.jetbrains.anko.ctx
+import android.support.v4.content.ContextCompat.startActivity
+import android.opengl.ETC1.getWidth
+import android.opengl.ETC1.getHeight
+import android.content.Intent
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 
 
 /**
@@ -97,9 +108,34 @@ class GankActivity : BaseActivity<GankPresenter>(), GankContract.View {
             }
         })
         tkRefreshLayout.startRefresh()
+        gankAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
+
+            override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
+                startPhotoActivity(ctx, (view as RelativeLayout).getChildAt(0) as ImageView,list!!.get(position).url!!)
+            }
+
+            override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
+                return false
+            }
+        })
     }
 
     fun getGankData() {
         mPresenter?.requestData("福利", PAGE_SIZE, page)
+    }
+
+    fun startPhotoActivity(context: Context, imageView: ImageView,url:String) {
+        val intent = Intent(context, ImageActivity::class.java)
+        val location = IntArray(2)
+
+        imageView.getLocationOnScreen(location)
+        intent.putExtra("left", location[0])
+        intent.putExtra("top", location[1])
+        intent.putExtra("height", imageView.getHeight())
+        intent.putExtra("width", imageView.getWidth())
+        intent.putExtra("url",url)
+
+        context.startActivity(intent)
+        overridePendingTransition(0, 0)
     }
 }
