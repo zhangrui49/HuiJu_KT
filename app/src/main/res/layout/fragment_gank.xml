@@ -55,9 +55,9 @@
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
-            android:layout_marginTop="@dimen/common_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common_margin"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
 
@@ -65,23 +65,22 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/transparent"
         fab:fab_addButtonColorNormal="@color/white"
         fab:fab_addButtonColorPressed="@color/white_pressed"
         fab:fab_addButtonPlusIconColor="@color/half_black"
-        fab:fab_labelStyle="@style/menu_labels_style"
-        android:background="@color/transparent"
-        android:layout_gravity="bottom|end"
-        >
+        fab:fab_labelStyle="@style/menu_labels_style">
+
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/date"
             fab:fab_colorNormal="@color/white"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_title="Action A" />
+            fab:fab_colorPressed="@color/white_pressed" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_rest"
@@ -89,7 +88,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/image"
             fab:fab_colorNormal="@color/white"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_title="Action with a very long name that won\'t fit on the screen" />
+            fab:fab_colorPressed="@color/white_pressed" />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </FrameLayout>

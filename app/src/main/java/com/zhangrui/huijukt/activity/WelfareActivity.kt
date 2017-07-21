@@ -2,8 +2,13 @@ package com.zhangrui.huijukt.activity
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.os.Build
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.View
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
@@ -13,17 +18,15 @@ import com.zhangrui.huijukt.adapter.WelfareAdapter
 import com.zhangrui.huijukt.base.BaseActivity
 import com.zhangrui.huijukt.bean.Gank
 import com.zhangrui.huijukt.bean.GankData
-import com.zhangrui.huijukt.extensions.*
+import com.zhangrui.huijukt.extensions.dip2px
+import com.zhangrui.huijukt.extensions.dismissProgress
+import com.zhangrui.huijukt.extensions.toast
+import com.zhangrui.huijukt.extensions.warn
 import com.zhangrui.huijukt.mvp.contract.WelfareContract
-import kotlinx.android.synthetic.main.common_data_layout.*
-import org.jetbrains.anko.ctx
-import android.content.Intent
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import com.zhangrui.huijukt.mvp.presenter.WelfarePresenter
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
+import kotlinx.android.synthetic.main.activity_welfare.*
+import org.jetbrains.anko.ctx
 
 
 /**
@@ -49,14 +52,12 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     }
 
     override fun showData(data: Gank) {
-        //     tkRefreshLayout.finishRefreshing()
-        // tkRefreshLayout.finishLoadmore()
         data.results?.let { list!!.addAll(it) };
         welfareAdapter?.notifyDataSetChanged()
     }
 
     override fun generateLayoutId(): Int {
-        return R.layout.common_data_layout
+        return R.layout.activity_welfare
     }
 
     override fun generatePresenter(): WelfarePresenter {
@@ -64,6 +65,12 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     }
 
     override fun initView() {
+        setSupportActionBar(toolbar)
+        toolbar.title = "福利"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
         list = ArrayList<GankData>()
         welfareAdapter = WelfareAdapter(this, R.layout.item_gank_img, list!!);
         val rxPermissions = RxPermissions(this)
@@ -86,13 +93,11 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
             override fun onRefresh(refreshLayout: TwinklingRefreshLayout?) {
                 page = 1;
                 list?.clear()
-                //     Handler().postDelayed(Runnable { refreshLayout?.finishRefreshing() }, 2000)
                 getGankData()
             }
 
             override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
                 page++;
-                //  Handler().postDelayed(Runnable { refreshLayout?.finishLoadmore() }, 2000)
                 getGankData()
             }
         })
@@ -100,7 +105,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         welfareAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
 
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
-                startPhotoActivity(ctx, (view as RelativeLayout).getChildAt(0) as ImageView,list!!.get(position).url!!)
+                startPhotoActivity(ctx, (view as RelativeLayout).getChildAt(0) as ImageView, list!!.get(position).url!!)
             }
 
             override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
@@ -113,7 +118,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         mPresenter?.requestData("福利", PAGE_SIZE, page)
     }
 
-    fun startPhotoActivity(context: Context, imageView: ImageView,url:String) {
+    fun startPhotoActivity(context: Context, imageView: ImageView, url: String) {
         val intent = Intent(context, ImageActivity::class.java)
         val location = IntArray(2)
 
@@ -122,7 +127,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         intent.putExtra("top", location[1])
         intent.putExtra("height", imageView.getHeight())
         intent.putExtra("width", imageView.getWidth())
-        intent.putExtra("url",url)
+        intent.putExtra("url", url)
 
         context.startActivity(intent)
         overridePendingTransition(0, 0)
