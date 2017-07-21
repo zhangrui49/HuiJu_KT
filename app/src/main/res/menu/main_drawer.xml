@@ -3,13 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/meipai"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="美拍"/>
-        <item
             android:id="@+id/gank"
             android:icon="@drawable/ic_menu_gallery"
             android:title="GANK"/>
+        <item
+            android:id="@+id/meipai"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="美拍"/>
         <item
             android:id="@+id/douban"
             android:icon="@drawable/ic_menu_slideshow"

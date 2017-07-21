@@ -6,7 +6,7 @@
 
         <variable
                 name="story"
-                type="com.zhangrui.huiju.viewmodel.Story"/>/>
+                type="com.zhangrui.huijukt.viewmodel.Story"/>/>
     </data>
 
     <LinearLayout
