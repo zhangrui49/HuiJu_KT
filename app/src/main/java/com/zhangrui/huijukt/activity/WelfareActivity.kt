@@ -37,6 +37,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     val PAGE_SIZE = 10
     var welfareAdapter: WelfareAdapter? = null;
     var list: ArrayList<GankData>? = null
+
     override fun showLoading() {
         // showProgress()
     }
@@ -121,14 +122,12 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     fun startPhotoActivity(context: Context, imageView: ImageView, url: String) {
         val intent = Intent(context, ImageActivity::class.java)
         val location = IntArray(2)
-
         imageView.getLocationOnScreen(location)
         intent.putExtra("left", location[0])
         intent.putExtra("top", location[1])
         intent.putExtra("height", imageView.getHeight())
         intent.putExtra("width", imageView.getWidth())
         intent.putExtra("url", url)
-
         context.startActivity(intent)
         overridePendingTransition(0, 0)
     }

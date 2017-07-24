@@ -16,19 +16,21 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.WelfareActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.ImageActivity"
             android:theme="@style/translucent" />
-        <activity android:name=".activity.MainActivity"
+        <activity
+            android:name=".activity.MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.GankDayActivity" />
+        <activity android:name=".activity.WebActivity"></activity>
     </application>
 
 </manifest>

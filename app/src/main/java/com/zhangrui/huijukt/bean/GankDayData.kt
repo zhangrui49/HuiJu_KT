@@ -16,36 +16,5 @@ import java.util.HashMap
 class GankDayData {
 
 
-    private var mResultList: HashMap<String, List<GankData>>? = null
-    var isError: Boolean = false
-    var results: DayData? = null
-    var category: List<String>? = null
 
-    class DayData
-
-
-    fun generateResult(): HashMap<*, *> {
-        mResultList = HashMap<String, List<GankData>>()
-        val gson = Gson()
-        for (key in category!!) {
-            try {
-                val jsonObject = JSONObject(gson.toJson(results))
-                mResultList!!.put(key, gson.fromJson<Any>(jsonObject.optString(key), object : TypeToken<List<GankData>>() {
-
-                }.type) as List<GankData>)
-            } catch (e: JSONException) {
-                e.printStackTrace()
-            }
-
-        }
-        return mResultList as HashMap<String, List<GankData>>
-    }
-    //
-    //    public HashMap<String, List<GankData>> getResultList() {
-    //        return mResultList;
-    //    }
-    //
-    //    public void setResultList(HashMap<String, List<GankData>> resultList) {
-    //        mResultList = resultList;
-    //    }
 }

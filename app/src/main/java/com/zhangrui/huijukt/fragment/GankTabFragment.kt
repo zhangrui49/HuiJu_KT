@@ -2,20 +2,16 @@ package com.zhangrui.huijukt.fragment
 
 import android.Manifest
 import android.os.Build
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
 import com.tbruyelle.rxpermissions.RxPermissions
 import com.zhangrui.huijukt.R
+import com.zhangrui.huijukt.activity.WebActivity
 import com.zhangrui.huijukt.adapter.GankTabAdapter
-import com.zhangrui.huijukt.adapter.WelfareAdapter
 import com.zhangrui.huijukt.base.BaseFragment
 import com.zhangrui.huijukt.bean.Gank
 import com.zhangrui.huijukt.bean.GankData
@@ -25,13 +21,13 @@ import com.zhangrui.huijukt.mvp.contract.GankTabContract
 import com.zhangrui.huijukt.mvp.presenter.GankTabPresenter
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.common_data_layout.*
-import org.jetbrains.anko.ctx
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by zhangrui on 2017/7/20.
  */
-class GankTabFragment: BaseFragment<GankTabPresenter>(),GankTabContract.View {
+class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
     var page = 1
     val PAGE_SIZE = 10
     var gankTabAdapter: GankTabAdapter? = null;
@@ -69,7 +65,7 @@ class GankTabFragment: BaseFragment<GankTabPresenter>(),GankTabContract.View {
                     })
         }
         recyclerview.adapter = gankTabAdapter;
-        recyclerview.layoutManager = LinearLayoutManager(ctx,LinearLayoutManager.VERTICAL,false)
+        recyclerview.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
         tkRefreshLayout.setHeaderView(ProgressLayout(ctx))
         tkRefreshLayout.setBottomHeight(180f.dip2px(ctx))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
@@ -89,7 +85,7 @@ class GankTabFragment: BaseFragment<GankTabPresenter>(),GankTabContract.View {
         gankTabAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
 
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
-
+                startActivity<WebActivity>("url" to list?.get(position)?.url.toString())
             }
 
             override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
@@ -103,12 +99,12 @@ class GankTabFragment: BaseFragment<GankTabPresenter>(),GankTabContract.View {
     }
 
     override fun generatePresenter(): GankTabPresenter {
-        return GankTabPresenter(ctx,this)
+        return GankTabPresenter(ctx, this)
     }
 
 
     fun getGankData() {
-        var type=arguments!!.getString("type")
+        var type = arguments!!.getString("type")
         mPresenter?.requestData(type, PAGE_SIZE, page)
     }
 

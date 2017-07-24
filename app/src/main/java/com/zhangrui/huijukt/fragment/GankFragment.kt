@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
-import android.view.ViewGroup
 import com.zhangrui.huijukt.R
-import com.zhangrui.huijukt.activity.ImageActivity
+import com.zhangrui.huijukt.activity.GankDayActivity
 import com.zhangrui.huijukt.activity.WelfareActivity
 import com.zhangrui.huijukt.adapter.GankPagerAdapter
 import com.zhangrui.huijukt.base.BaseFragment
 import com.zhangrui.huijukt.mvp.contract.GankContract
 import com.zhangrui.huijukt.mvp.presenter.GankPresenter
-import kotlinx.android.synthetic.main.activity_web.view.*
-import kotlinx.android.synthetic.main.fabmenu_gank.*
 import kotlinx.android.synthetic.main.fragment_gank.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
@@ -44,7 +41,7 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
         }
         toolbar.title = "干货"
         val mImageArray = intArrayOf(R.drawable.android, R.drawable.ios, R.drawable.web, R.drawable.rest, R.drawable.out)
-        var mColorArray = intArrayOf(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light, R.color.colorPrimary)
+        val mColorArray = intArrayOf(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light, R.color.colorPrimary)
         gankPagerAdapter = GankPagerAdapter(fragmentManager, list, TITLES)
         pager.offscreenPageLimit = 1
         pager.adapter = gankPagerAdapter
@@ -70,6 +67,7 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
             menu.collapse()
         }
         action_date.setOnClickListener {
+            startActivity<GankDayActivity>()
             menu.collapse()
         }
     }
@@ -77,6 +75,5 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
     override fun generatePresenter(): GankPresenter {
         return GankPresenter(ctx, this)
     }
-
 
 }
