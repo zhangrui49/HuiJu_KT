@@ -25,7 +25,7 @@ class WelfareAdapter(context: Context, layout: Int, list: ArrayList<GankData>) :
 
     override fun convert(holder: ViewHolder?, t: GankData?, position: Int) {
         Glide.with(context)
-                .load(list!![position].url)
+                .load(list!![position].url?.plus("?imageView2/0/w/100"))
                 .into(holder!!.getView(R.id.image));
     }
 

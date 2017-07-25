@@ -49,7 +49,9 @@ class GankDayActivity : BaseActivity<GankDayPresenter>(), GankDayContract.View, 
     }
 
     override fun showData(data: GankDay) {
-        data.generateResults()?.let { list!!.addAll(it) };
+        data.generateResults()?.let {
+            list?.clear()
+            list!!.addAll(it) };
         adapter?.notifyDataSetChanged()
     }
 
@@ -75,7 +77,6 @@ class GankDayActivity : BaseActivity<GankDayPresenter>(), GankDayContract.View, 
         tkRefreshLayout.setBottomHeight(180f.dip2px(this))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
             override fun onRefresh(refreshLayout: TwinklingRefreshLayout?) {
-                list?.clear()
                 getGankDayData()
             }
 

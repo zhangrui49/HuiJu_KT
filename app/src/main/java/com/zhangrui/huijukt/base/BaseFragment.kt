@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.zhangrui.huijukt.R
 
 /**
+ *
  * Created by zhangrui on 2017/7/20.
  */
 abstract class BaseFragment<T:BasePresenter<out BaseView>> :Fragment() {

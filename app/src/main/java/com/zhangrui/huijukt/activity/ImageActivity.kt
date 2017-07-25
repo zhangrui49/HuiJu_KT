@@ -82,7 +82,9 @@ class ImageActivity : AppCompatActivity() {
                         mOriginWidth = intent.getIntExtra("width", 0)
                         mOriginCenterX = mOriginLeft + mOriginWidth / 2
                         mOriginCenterY = mOriginTop + mOriginHeight / 2
+
                         val location = IntArray(2)
+
                         val photoView = mPhotoViews!![0]
                         photoView.getLocationOnScreen(location)
 
@@ -93,13 +95,17 @@ class ImageActivity : AppCompatActivity() {
 
                         val targetCenterX = location[0] + mTargetWidth / 2
                         val targetCenterY = location[1] + mTargetHeight / 2
+
                         mTranslationX = mOriginCenterX - targetCenterX
                         mTranslationY = mOriginCenterY - targetCenterY
                         photoView.translationX = mTranslationX
                         photoView.translationY = mTranslationY
+
                         photoView.scaleX = mScaleX
                         photoView.scaleY = mScaleY
+
                         performEnterAnimation()
+
                         for (i in mPhotoViews!!.indices) {
                             mPhotoViews!![i].minScale = mScaleX
                         }
