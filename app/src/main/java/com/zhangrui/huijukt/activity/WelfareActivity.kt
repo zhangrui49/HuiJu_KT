@@ -26,10 +26,14 @@ import com.zhangrui.huijukt.mvp.contract.WelfareContract
 import com.zhangrui.huijukt.mvp.presenter.WelfarePresenter
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.activity_welfare.*
-import org.jetbrains.anko.ctx
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
 
 
 /**
+ *
  * Created by zhangrui on 2017/7/14.
  */
 class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
@@ -76,7 +80,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         welfareAdapter = WelfareAdapter(this, R.layout.item_gank_img, list!!);
         val rxPermissions = RxPermissions(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val subscribe = rxPermissions
+            rxPermissions
                     .request(Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .subscribe({ granted ->
                         if (granted) {
@@ -92,7 +96,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         tkRefreshLayout.setBottomHeight(180f.dip2px(this))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
             override fun onRefresh(refreshLayout: TwinklingRefreshLayout?) {
-                page = 1;
+                page = 1
                 list?.clear()
                 getGankData()
             }
@@ -106,7 +110,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         welfareAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
 
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
-                startPhotoActivity(ctx, (view as RelativeLayout).getChildAt(0) as ImageView, list!!.get(position).url!!)
+                AnimationImageActivity.start(this@WelfareActivity, view!!, list!![position].url!!)
             }
 
             override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {

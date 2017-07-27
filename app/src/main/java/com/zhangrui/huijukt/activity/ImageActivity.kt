@@ -16,6 +16,9 @@ import com.zhangrui.huijukt.R
 import kotlinx.android.synthetic.main.activity_image.*
 import org.jetbrains.anko.ctx
 
+/**
+ * DragPhotoView 里copy来的代码
+ */
 class ImageActivity : AppCompatActivity() {
 
     private var mPhotoViews: ArrayList<DragPhotoView>? = null
@@ -142,6 +145,7 @@ class ImageActivity : AppCompatActivity() {
             override fun onAnimationStart(animator: Animator) {
 
             }
+
             override fun onAnimationEnd(animator: Animator) {
                 animator.removeAllListeners()
                 finish()
@@ -151,6 +155,7 @@ class ImageActivity : AppCompatActivity() {
             override fun onAnimationCancel(animator: Animator) {
 
             }
+
             override fun onAnimationRepeat(animator: Animator) {
 
             }
@@ -184,6 +189,7 @@ class ImageActivity : AppCompatActivity() {
             override fun onAnimationStart(animator: Animator) {
 
             }
+
             override fun onAnimationEnd(animator: Animator) {
                 animator.removeAllListeners()
                 finish()

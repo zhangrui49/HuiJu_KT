@@ -1,15 +1,13 @@
 package com.zhangrui.huijukt.activity
 
-import android.app.Activity
-import android.os.Bundle
+import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import com.borax12.materialdaterangepicker.date.DatePickerDialog
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
@@ -17,9 +15,7 @@ import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.adapter.GankDayAdapter
 import com.zhangrui.huijukt.base.BaseActivity
-import com.zhangrui.huijukt.bean.GankData
 import com.zhangrui.huijukt.bean.GankDay
-import com.zhangrui.huijukt.bean.GankDayData
 import com.zhangrui.huijukt.extensions.dip2px
 import com.zhangrui.huijukt.mvp.contract.GankDayContract
 import com.zhangrui.huijukt.mvp.presenter.GankDayPresenter
@@ -27,8 +23,6 @@ import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.activity_gank_day.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -51,7 +45,8 @@ class GankDayActivity : BaseActivity<GankDayPresenter>(), GankDayContract.View, 
     override fun showData(data: GankDay) {
         data.generateResults()?.let {
             list?.clear()
-            list!!.addAll(it) };
+            list!!.addAll(it)
+        };
         adapter?.notifyDataSetChanged()
     }
 
@@ -90,7 +85,9 @@ class GankDayActivity : BaseActivity<GankDayPresenter>(), GankDayContract.View, 
 
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
                 val item = list?.get(position)
-                if ((!item?.type.equals("福利")) && (!item?.type.equals("title"))) {
+                if (item?.type.equals("福利")) {
+                    AnimationImageActivity.start(this@GankDayActivity, view!!, list!![position].url)
+                } else if ((!item?.type.equals("福利")) && (!item?.type.equals("title"))) {
                     startActivity<WebActivity>("url" to list?.get(position)?.url.toString())
                 }
             }
@@ -138,6 +135,6 @@ class GankDayActivity : BaseActivity<GankDayPresenter>(), GankDayContract.View, 
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int, yearEnd: Int, monthOfYearEnd: Int, dayOfMonthEnd: Int) {
         list?.clear()
-        getGankDayData(year.toString() + "/" + monthOfYear.toString() + "/" + dayOfMonth.toString())
+        getGankDayData(year.toString() + "/" + (monthOfYear + 1).toString() + "/" + dayOfMonth.toString())
     }
 }

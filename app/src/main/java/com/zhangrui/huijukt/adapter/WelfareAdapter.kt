@@ -2,11 +2,15 @@ package com.zhangrui.huijukt.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.wingsofts.dragphotoview.DragPhotoView
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.bean.GankData
 import com.zhy.adapter.recyclerview.CommonAdapter
 import com.zhy.adapter.recyclerview.base.ViewHolder
+import org.jetbrains.anko.coroutines.experimental.asReference
+import uk.co.senab.photoview.PhotoView
 
 
 /**
@@ -24,9 +28,11 @@ class WelfareAdapter(context: Context, layout: Int, list: ArrayList<GankData>) :
     }
 
     override fun convert(holder: ViewHolder?, t: GankData?, position: Int) {
+        var image = holder?.getView<ImageView>(R.id.image)
         Glide.with(context)
                 .load(list!![position].url?.plus("?imageView2/0/w/100"))
-                .into(holder!!.getView(R.id.image));
+                //  .load(list!![position].url)
+                .into(image)
     }
 
 }
