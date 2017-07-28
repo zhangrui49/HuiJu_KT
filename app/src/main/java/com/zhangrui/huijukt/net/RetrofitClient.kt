@@ -1,5 +1,6 @@
 package com.tt.lvruheng.eyepetizer.network
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import com.zhangrui.huijukt.net.Api
@@ -43,8 +44,8 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
                 .addNetworkInterceptor(
                         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .cache(cache)
-              //  .addInterceptor(CacheInterceptor(context))
-               // .addNetworkInterceptor(CacheInterceptor(context))
+               // .addInterceptor(CacheInterceptor(context))
+                .addNetworkInterceptor(CacheInterceptor(context))
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build()
@@ -59,10 +60,13 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
     }
 
     companion object {
+        @SuppressLint("StaticFieldLeak")
         @Volatile
         var gankInstance: RetrofitClient? = null
+        @SuppressLint("StaticFieldLeak")
         @Volatile
         var doubanInstance: RetrofitClient? = null
+        @SuppressLint("StaticFieldLeak")
         @Volatile
         var meipaiInstance: RetrofitClient? = null
 

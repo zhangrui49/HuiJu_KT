@@ -27,12 +27,6 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
             return GankFragment()
         }
     }
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (mRootView == null) {
-            mRootView = inflater?.inflate(R.layout.fragment_gank, container, false)
-        }
-        return mRootView
-    }
     private val TITLES = arrayOf("Android", "iOS", "前端", "休息视频", "拓展资源")
     private var gankPagerAdapter: GankPagerAdapter? = null
     override fun generateLayoutId(): Int {
@@ -51,8 +45,8 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
         toolbar.title = "干货"
         val mImageArray = intArrayOf(R.drawable.android, R.drawable.ios, R.drawable.web, R.drawable.rest, R.drawable.out)
         val mColorArray = intArrayOf(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light, R.color.colorPrimary)
-        gankPagerAdapter = GankPagerAdapter(fragmentManager, list, TITLES)
-        pager.offscreenPageLimit = 0
+        gankPagerAdapter = GankPagerAdapter(childFragmentManager, list, TITLES)
+        pager.offscreenPageLimit = 1
         pager.adapter = gankPagerAdapter
         pager_tabs.setupWithViewPager(pager)
         pager_tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

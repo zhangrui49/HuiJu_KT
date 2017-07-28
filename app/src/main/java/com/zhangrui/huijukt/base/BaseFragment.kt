@@ -5,18 +5,26 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.zhangrui.huijukt.R
 
 /**
  *
  * Created by zhangrui on 2017/7/20.
  */
-abstract class BaseFragment<T:BasePresenter<out BaseView>> :Fragment() {
+abstract class BaseFragment<T : BasePresenter<out BaseView>> : Fragment() {
     var mPresenter: T? = null
-    var mRootView:View?=null
+    var mRootView: View? = null
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if (mRootView == null) {
+            mRootView = inflater?.inflate(generateLayoutId(), container, false)
+        }
+        return mRootView
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter=generatePresenter()
+        mPresenter = generatePresenter()
         initView()
     }
 

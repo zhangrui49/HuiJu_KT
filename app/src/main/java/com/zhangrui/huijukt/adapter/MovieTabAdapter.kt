@@ -31,11 +31,10 @@ class MovieTabAdapter(context: Context, layout: Int, list: ArrayList<MovieDetail
     }
 
     override fun convert(holder: ViewHolder?, movieDetail: MovieDetail?, position: Int) {
-        Glide.with(mContext).load(movieDetail?.images?.medium).into(holder?.getView(R.id.image))
+        Glide.with(mContext).load(movieDetail?.images?.large).into(holder?.getView(R.id.image))
         holder?.setText(R.id.title, movieDetail?.title)
         holder?.setText(R.id.genres, movieDetail?.genres?.joinToString("/"))
         holder?.setText(R.id.year, movieDetail?.year)
-
         holder?.setText(R.id.director, movieDetail?.directors?.get(0)?.name)
         holder?.setRating(R.id.rating, movieDetail?.rating?.average!!)
     }

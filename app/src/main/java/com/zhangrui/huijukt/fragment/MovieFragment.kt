@@ -38,8 +38,8 @@ class MovieFragment : BaseFragment<MoviePresenter>(), MovieContract.View {
             tabFragment.arguments = bundle
             list.add(tabFragment)
         }
-        movieAdapter = MoviePagerAdapter(fragmentManager, list)
-        pager.offscreenPageLimit = 0
+        movieAdapter = MoviePagerAdapter(childFragmentManager, list)
+        pager.offscreenPageLimit = 1
         pager.adapter = movieAdapter
         bottom.setOnNavigationItemReselectedListener {
 

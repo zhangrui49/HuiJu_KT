@@ -17,7 +17,7 @@ class GankPagerAdapter(fragmentManager: FragmentManager, list: ArrayList<Fragmen
     }
 
     override fun getCount(): Int {
-        return mFragments!!?.size
+        return mFragments!!.size
     }
 
     override fun getPageTitle(position: Int): CharSequence {
@@ -25,7 +25,7 @@ class GankPagerAdapter(fragmentManager: FragmentManager, list: ArrayList<Fragmen
     }
 
     override fun getItem(position: Int): Fragment {
-        return mFragments!!.get(position)
+        return mFragments!![position]
     }
 
 }

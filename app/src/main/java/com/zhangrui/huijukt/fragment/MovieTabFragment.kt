@@ -10,6 +10,8 @@ import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
 import com.zhangrui.huijukt.R
+import com.zhangrui.huijukt.activity.AnimationImageActivity
+import com.zhangrui.huijukt.activity.MovieDetailActivity
 import com.zhangrui.huijukt.adapter.MovieTabAdapter
 import com.zhangrui.huijukt.base.BaseFragment
 import com.zhangrui.huijukt.bean.douban.Movie
@@ -27,12 +29,6 @@ import org.jetbrains.anko.support.v4.ctx
  */
 class MovieTabFragment : BaseFragment<MovieTabPresenter>(), MovieTabContract.View {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (mRootView == null) {
-            mRootView = inflater?.inflate(R.layout.common_data_layout, container, false)
-        }
-        return mRootView
-    }
     var movieAdapter: MovieTabAdapter? = null
     var page = 1
     val PAGE_SIZE = 10
@@ -77,7 +73,7 @@ class MovieTabFragment : BaseFragment<MovieTabPresenter>(), MovieTabContract.Vie
         movieAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
 
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
-
+                MovieDetailActivity.start(activity, view!!, list!![position])
             }
 
             override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {

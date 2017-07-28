@@ -35,12 +35,6 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
     val PAGE_SIZE = 10
     var gankTabAdapter: GankTabAdapter? = null;
     var list: ArrayList<GankData>? = null
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (mRootView == null) {
-            mRootView = inflater?.inflate(R.layout.gank_data_layout, container, false)
-        }
-        return mRootView
-    }
 
     override fun showLoading() {
     }
@@ -104,7 +98,7 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
     }
 
     override fun generateLayoutId(): Int {
-        return R.layout.gank_data_layout
+        return R.layout.common_data_layout
     }
 
     override fun generatePresenter(): GankTabPresenter {
