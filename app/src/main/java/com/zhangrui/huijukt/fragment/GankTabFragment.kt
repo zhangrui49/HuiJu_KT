@@ -2,9 +2,12 @@ package com.zhangrui.huijukt.fragment
 
 import android.Manifest
 import android.os.Build
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
@@ -20,7 +23,7 @@ import com.zhangrui.huijukt.extensions.warn
 import com.zhangrui.huijukt.mvp.contract.GankTabContract
 import com.zhangrui.huijukt.mvp.presenter.GankTabPresenter
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
-import kotlinx.android.synthetic.main.common_data_layout.*
+import kotlinx.android.synthetic.main.gank_data_layout.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -32,6 +35,12 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
     val PAGE_SIZE = 10
     var gankTabAdapter: GankTabAdapter? = null;
     var list: ArrayList<GankData>? = null
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if (mRootView == null) {
+            mRootView = inflater?.inflate(R.layout.gank_data_layout, container, false)
+        }
+        return mRootView
+    }
 
     override fun showLoading() {
     }
@@ -95,7 +104,7 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
     }
 
     override fun generateLayoutId(): Int {
-        return R.layout.common_data_layout
+        return R.layout.gank_data_layout
     }
 
     override fun generatePresenter(): GankTabPresenter {
@@ -104,8 +113,11 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
 
 
     fun getGankData() {
-        var type = arguments!!.getString("type")
+        val type = arguments!!.getString("type")
         mPresenter?.requestData(type, PAGE_SIZE, page)
     }
 
+    fun refresh() {
+        tkRefreshLayout.startRefresh()
+    }
 }

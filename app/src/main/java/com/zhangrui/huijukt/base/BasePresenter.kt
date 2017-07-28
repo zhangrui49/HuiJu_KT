@@ -12,12 +12,15 @@ import rx.subscriptions.CompositeSubscription
  *
  * Created by zhangrui on 2017/7/13.
  */
-abstract class BasePresenter<V>(context: Context,view:V) {
-    var mView:V? = null;
+abstract class BasePresenter<V:BaseView>(context: Context,view:V) {
+    var mView:V? = null
     var mContext: Context? = null
     var mCompositeSubscription: CompositeSubscription? = null
 
-
+    init {
+        mContext = context
+        mView = view
+    }
     fun detachView() {
         this.mView = null
         onUnsubscribe()

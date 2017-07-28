@@ -102,7 +102,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
             }
 
             override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
-                page++;
+                page++
                 getGankData()
             }
         })
@@ -129,8 +129,8 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         imageView.getLocationOnScreen(location)
         intent.putExtra("left", location[0])
         intent.putExtra("top", location[1])
-        intent.putExtra("height", imageView.getHeight())
-        intent.putExtra("width", imageView.getWidth())
+        intent.putExtra("height", imageView.height)
+        intent.putExtra("width", imageView.width)
         intent.putExtra("url", url)
         context.startActivity(intent)
         overridePendingTransition(0, 0)

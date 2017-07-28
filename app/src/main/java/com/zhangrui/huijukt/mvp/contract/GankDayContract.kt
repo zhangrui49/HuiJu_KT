@@ -4,7 +4,6 @@ import android.content.Context
 import com.zhangrui.huijukt.base.BasePresenter
 import com.zhangrui.huijukt.base.BaseView
 import com.zhangrui.huijukt.bean.GankDay
-import com.zhangrui.huijukt.bean.GankDayData
 
 /**
  * Created by zhangrui on 2017/7/21.

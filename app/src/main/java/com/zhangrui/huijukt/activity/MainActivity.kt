@@ -27,7 +27,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
         drawer_layout.addDrawerListener(toggle);
         nav_view.setNavigationItemSelectedListener(this)
         toggle.syncState();
-        mFragment = GankFragment.newInstance()
+        mFragment = GankFragment()
         replaceFragment()
     }
 
@@ -50,7 +50,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        val id = item.getItemId()
+        val id = item.itemId
 
         if (id == R.id.gank) {
             mFragment = GankFragment()
@@ -80,7 +80,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
 
     fun replaceFragment() {
         val ft = supportFragmentManager.beginTransaction()
-        if (mFragment != null && mFragment!!.isAdded()) {
+        if (mFragment != null && mFragment!!.isAdded) {
             ft.show(mFragment)
         } else {
             ft.replace(R.id.main_content, mFragment)

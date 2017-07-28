@@ -3,9 +3,11 @@ package com.zhangrui.huijukt.net
 import retrofit2.http.GET
 import com.zhangrui.huijukt.bean.Gank
 import com.zhangrui.huijukt.bean.GankDay
-import com.zhangrui.huijukt.bean.GankDayData
+import com.zhangrui.huijukt.bean.douban.Movie
 import retrofit2.http.Path
 import rx.Observable
+import retrofit2.http.QueryMap
+import com.zhangrui.huijukt.bean.douban.MovieDetail
 
 
 /**
@@ -17,7 +19,7 @@ class Api {
     interface GankApi {
 
         companion object {
-            const val GANK_BASE_URL = "http://gank.io/api/";
+            const val GANK_BASE_URL = "http://gank.io/api/"
         }
 
         @GET("data/{type}/{pageSize}/{page}")
@@ -25,6 +27,20 @@ class Api {
 
         @GET("day/{date}")
         fun getGankDayData(@Path("date") date: String): Observable<GankDay>
+    }
+
+    interface DoubanApi{
+
+        companion object {
+            val DOUBAN_BASE_URL = "https://api.douban.com/v2/movie/"
+        }
+
+        @GET("{type}")
+        fun getMovies(@Path("type") type: String, @QueryMap map: HashMap<String, Any>): Observable<Movie>
+
+        @GET("subject/{id}")
+        fun getMovieDetail(@Path("id") id: String): Observable<MovieDetail>
+
     }
 
 }

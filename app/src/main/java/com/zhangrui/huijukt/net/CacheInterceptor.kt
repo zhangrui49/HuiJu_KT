@@ -13,10 +13,10 @@ import okhttp3.CacheControl
  * Created by lvruheng on 2017/7/4.
  */
 class CacheInterceptor(context: Context) : Interceptor{
-    val context = context
+    val mContext = context
     override fun intercept(chain: Interceptor.Chain?): Response? {
         var request = chain?.request()
-        if (Utils.isNetworkAvailable(context)) {
+        if (Utils.isNetworkAvailable(mContext)) {
             val response = chain?.proceed(request)
             // read from cache for 60 s
             val maxAge = 60

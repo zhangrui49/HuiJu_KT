@@ -12,11 +12,9 @@ import android.view.MotionEvent
  */
 open class FixMultiViewPager : ViewPager {
 
-    constructor(context: Context) : super(context) {
-    }
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attributeSet: AttributeSet) : this(context) {
-    }
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
         try {

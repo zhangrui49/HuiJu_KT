@@ -3,7 +3,6 @@ package com.zhangrui.huijukt.mvp.presenter
 import android.content.Context
 import com.tt.lvruheng.eyepetizer.network.RetrofitClient
 import com.zhangrui.huijukt.bean.GankDay
-import com.zhangrui.huijukt.bean.GankDayData
 import com.zhangrui.huijukt.mvp.contract.GankDayContract
 import com.zhangrui.huijukt.net.Api
 import com.zhangrui.huijukt.net.ApiCallBack
@@ -21,12 +20,12 @@ class GankDayPresenter(context: Context, view: GankDayContract.View) : GankDayCo
 
     override fun requestGankDayData(date: String) {
         mView?.showLoading();
-        addSubscription(RetrofitClient.getInstance(mContext!!, Api.GankApi.GANK_BASE_URL).create(Api.GankApi::class.java)!!.getGankDayData(date), object : ApiCallBack<GankDay>() {
+        addSubscription(RetrofitClient.getGankClient(mContext!!).create(Api.GankApi::class.java)!!.getGankDayData(date), object : ApiCallBack<GankDay>() {
 
             override fun onSuccess(data: GankDay) {
-                if(data.isError||data.category.size<1){
+                if (data.isError || data.category.size < 1) {
                     mView?.showEmpty()
-                }else{
+                } else {
                     mView?.showData(data)
                 }
             }

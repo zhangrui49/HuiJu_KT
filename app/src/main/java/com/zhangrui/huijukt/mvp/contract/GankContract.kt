@@ -10,15 +10,9 @@ import com.zhangrui.huijukt.bean.Gank
  * Created by zhangrui on 2017/7/13.
  */
 class GankContract {
-    interface View : BaseView {
+    interface View : BaseView
 
-    }
+    abstract class Presenter(context: Context, view: GankContract.View) : BasePresenter<View>(context, view)
 
-    abstract class Presenter(context: Context, view: GankContract.View) : BasePresenter<View>(context, view) {
-
-    }
-
-    interface Model : BaseModel {
-
-    }
+    interface Model : BaseModel
 }

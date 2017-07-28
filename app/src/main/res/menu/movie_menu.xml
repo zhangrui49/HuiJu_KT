@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/coming_soon"
+        android:enabled="true"
+        android:icon="@drawable/coming"
+        android:title="即将上映"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/in_theaters"
+        android:enabled="true"
+        android:icon="@drawable/hot"
+        android:title="正在热映"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/top250"
+        android:enabled="true"
+        android:icon="@drawable/top"
+        android:title="Top250"
+        app:showAsAction="ifRoom" />
+
+    <!--<item-->
+        <!--android:id="@+id/weekly"-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/good"-->
+        <!--android:title="口碑榜"-->
+        <!--app:showAsAction="ifRoom" />-->
+
+    <!--<item-->
+        <!--android:id="@+id/new_movies"-->
+        <!--android:enabled="true"-->
+        <!--android:icon="@drawable/new_come"-->
+        <!--android:title="新片榜"-->
+        <!--app:showAsAction="ifRoom" />-->
+</menu>

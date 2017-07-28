@@ -22,7 +22,7 @@ class WelfarePresenter(context: Context, view: WelfareContract.View) : WelfareCo
     override fun requestData(path: String, pageSize: Int, page: Int) {
         mView?.showLoading();
         Log.e("http",page.toString());
-        addSubscription(RetrofitClient.getInstance(mContext!!, Api.GankApi.GANK_BASE_URL).create(Api.GankApi::class.java)!!.getGankData(path, pageSize, page), object : ApiCallBack<Gank>() {
+        addSubscription(RetrofitClient.getGankClient(mContext!!).create(Api.GankApi::class.java)!!.getGankData(path, pageSize, page), object : ApiCallBack<Gank>() {
 
             override fun onSuccess(data: Gank) {
                 mView?.showData(data)
