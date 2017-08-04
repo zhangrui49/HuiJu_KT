@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingTop="5dip"
-        android:text="加载中。。。"
+        android:text="加载中..."
         android:textColor="@color/colorAccent"
         android:textSize="14sp" />
 

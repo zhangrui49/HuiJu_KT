@@ -33,7 +33,8 @@
         <activity android:name=".activity.GankDayActivity" />
         <activity android:name=".activity.WebActivity" />
         <activity android:name=".activity.AnimationImageActivity" />
-        <activity android:name=".activity.MovieDetailActivity"></activity>
+        <activity android:name=".activity.MovieDetailActivity" />
+        <activity android:name=".activity.CastActivity"></activity>
     </application>
 
 </manifest>

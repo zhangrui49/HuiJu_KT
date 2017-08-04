@@ -5,19 +5,19 @@
         <item
             android:id="@+id/gank"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="GANK"/>
+            android:title="干货" />
         <item
             android:id="@+id/meipai"
             android:icon="@drawable/ic_menu_camera"
-            android:title="美拍"/>
+            android:title="美拍" />
         <item
             android:id="@+id/douban"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="豆瓣"/>
+            android:title="豆瓣" />
         <item
             android:id="@+id/zhihu"
             android:icon="@drawable/zhihu"
-            android:title="知乎"/>
+            android:title="知乎" />
     </group>
 
     <item android:title="其他">
@@ -25,11 +25,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="分享"/>
+                android:title="分享" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="发送"/>
+                android:title="发送" />
         </menu>
     </item>
 

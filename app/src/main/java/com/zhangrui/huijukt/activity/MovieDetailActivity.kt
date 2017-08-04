@@ -2,21 +2,23 @@ package com.zhangrui.huijukt.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
 import com.zhangrui.huijukt.R
+import com.zhangrui.huijukt.adapter.CastAdapter
 import com.zhangrui.huijukt.base.BaseActivity
+import com.zhangrui.huijukt.bean.douban.Casts
 import com.zhangrui.huijukt.bean.douban.MovieDetail
 import com.zhangrui.huijukt.mvp.contract.MovieDetailContract
 import com.zhangrui.huijukt.mvp.presenter.MovieDetailPresenter
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import org.jetbrains.anko.ctx
-import android.support.v7.widget.LinearLayoutManager
-import com.zhangrui.huijukt.adapter.CastAdapter
-import com.zhangrui.huijukt.bean.douban.Casts
 
 
 class MovieDetailActivity : BaseActivity<MovieDetailPresenter>(), MovieDetailContract.View {
@@ -47,6 +49,7 @@ class MovieDetailActivity : BaseActivity<MovieDetailPresenter>(), MovieDetailCon
         toolbar.setNavigationOnClickListener {
             finishAfterTransition()
         }
+        mPresenter?.requestData(id)
         app_bar_layout.addOnOffsetChangedListener({ appBarLayout, verticalOffset ->
             if (Math.abs(verticalOffset) >= appBarLayout.totalScrollRange) {
                 image.visibility = View.INVISIBLE
@@ -54,23 +57,28 @@ class MovieDetailActivity : BaseActivity<MovieDetailPresenter>(), MovieDetailCon
                 image.visibility = View.VISIBLE
             }
         })
-        Glide.with(ctx)
-                .load(movieDetail.images?.large)
-                .into(image)
-        mPresenter?.requestData(id)
         toolbar.title = movieDetail.title
-
+        Glide.with(this).load(movieDetail?.images?.large).into(image)
         listCast = ArrayList()
         castAdapter = CastAdapter(this, R.layout.item_cast, listCast!!)
         casts.adapter = castAdapter
         casts.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
         casts.isNestedScrollingEnabled = false
+        castAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
+
+            override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
+                CastActivity.start(this@MovieDetailActivity, listCast!![position], Pair.create(view?.findViewById(R.id.cast_head), "cast_head"), Pair.create(view?.findViewById(R.id.cast_name), "cast_name"))
+            }
+
+            override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
+                return false
+            }
+        })
     }
 
     override fun generateLayoutId(): Int {
         return R.layout.activity_movie_detail
     }
-
 
     override fun generatePresenter(): MovieDetailPresenter {
         return MovieDetailPresenter(this, this)

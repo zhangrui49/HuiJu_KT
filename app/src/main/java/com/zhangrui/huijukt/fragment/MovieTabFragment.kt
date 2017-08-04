@@ -30,7 +30,7 @@ import org.jetbrains.anko.support.v4.ctx
 class MovieTabFragment : BaseFragment<MovieTabPresenter>(), MovieTabContract.View {
 
     var movieAdapter: MovieTabAdapter? = null
-    var page = 1
+    var page = 0
     val PAGE_SIZE = 10
     var list: ArrayList<MovieDetail>? = null
     override fun showLoading() {
@@ -58,7 +58,7 @@ class MovieTabFragment : BaseFragment<MovieTabPresenter>(), MovieTabContract.Vie
         tkRefreshLayout.setBottomHeight(180f.dip2px(ctx))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
             override fun onRefresh(refreshLayout: TwinklingRefreshLayout?) {
-                page = 1
+                page = 0
                 list?.clear()
                 getMovieData()
             }
@@ -94,7 +94,7 @@ class MovieTabFragment : BaseFragment<MovieTabPresenter>(), MovieTabContract.Vie
         val type = arguments!!.getString("type")
         val map = HashMap<String, Any>()
         map.put("count", PAGE_SIZE)
-        map.put("start", page)
+        map.put("start", page * PAGE_SIZE + 1)
         mPresenter?.requestData(type, map)
     }
 

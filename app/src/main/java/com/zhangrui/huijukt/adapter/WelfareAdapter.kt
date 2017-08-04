@@ -17,7 +17,7 @@ import uk.co.senab.photoview.PhotoView
  * Created by zhangrui on 2017/7/14.
  */
 class WelfareAdapter(context: Context, layout: Int, list: ArrayList<GankData>) : CommonAdapter<GankData>(context, layout, list) {
-    var context: Context? = null;
+    var context: Context? = null
     var list: ArrayList<GankData>? = null
     var inflater: LayoutInflater? = null
 
@@ -30,8 +30,8 @@ class WelfareAdapter(context: Context, layout: Int, list: ArrayList<GankData>) :
     override fun convert(holder: ViewHolder?, t: GankData?, position: Int) {
         var image = holder?.getView<ImageView>(R.id.image)
         Glide.with(context)
-                .load(list!![position].url?.plus("?imageView2/0/w/100"))
-                //  .load(list!![position].url)
+                //     .load(list!![position].url?.plus("?imageView2/0/w/100"))
+                .load(list!![position].url)
                 .into(image)
     }
 

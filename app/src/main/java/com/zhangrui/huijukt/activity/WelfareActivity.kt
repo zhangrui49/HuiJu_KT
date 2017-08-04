@@ -30,6 +30,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
+import com.zhangrui.huijukt.widget.SpacesItemDecoration
 
 
 /**
@@ -92,6 +93,8 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
         }
         recyclerview.adapter = welfareAdapter;
         recyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val decoration = SpacesItemDecoration(16)
+        recyclerview.addItemDecoration(decoration)
         tkRefreshLayout.setHeaderView(ProgressLayout(this))
         tkRefreshLayout.setBottomHeight(180f.dip2px(this))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {

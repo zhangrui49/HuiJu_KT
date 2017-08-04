@@ -27,7 +27,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
         drawer_layout.addDrawerListener(toggle);
         nav_view.setNavigationItemSelectedListener(this)
         toggle.syncState();
-        mFragment = GankFragment()
+        mFragment = MovieFragment()
         replaceFragment()
     }
 
