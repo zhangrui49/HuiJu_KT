@@ -40,15 +40,11 @@ class MovieTabAdapter(context: Context, layout: Int, list: ArrayList<MovieDetail
     override fun convert(holder: ViewHolder?, movieDetail: MovieDetail?, position: Int) {
         //  Glide.with(mContext).load(movieDetail?.images?.large).into(holder?.getView(R.id.image))
         if (movieDetail?.mainColor == null) {
-//            holder?.setText(R.id.title, movieDetail?.title)
-//            holder?.setText(R.id.genres, movieDetail?.genres?.joinToString("/"))
-//            holder?.setText(R.id.year, movieDetail?.year)
-//            holder?.setText(R.id.director, movieDetail?.directors?.get(0)?.name)
-//            holder?.setRating(R.id.rating, movieDetail?.rating?.average!!)
-            holder?.getView<ShimmerLayout>(R.id.shimmer)?.startShimmerAnimation()
+
+          //  holder?.getView<ShimmerLayout>(R.id.shimmer)?.startShimmerAnimation()
             Glide.with(mContext).asBitmap().load(movieDetail?.images?.large).into(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
-                    //  holder?.getView<ImageView>(R.id.image)?.setImageBitmap(resource)
+
                     PaletteUtil(resource, PaletteUtil.PatternCallBack { mainColor ->
                         movieDetail?.mainColor = mainColor
                         notifyItemChanged(position)
@@ -56,7 +52,7 @@ class MovieTabAdapter(context: Context, layout: Int, list: ArrayList<MovieDetail
                 }
             })
         } else {
-            holder?.getView<ShimmerLayout>(R.id.shimmer)?.stopShimmerAnimation()
+          //  holder?.getView<ShimmerLayout>(R.id.shimmer)?.stopShimmerAnimation()
             Glide.with(mContext).load(movieDetail.images?.large).into(holder?.getView<ImageView>(R.id.image))
             holder?.getView<CardView>(R.id.movie_card)?.setBackgroundColor(movieDetail.mainColor!!)
             holder?.setText(R.id.title, movieDetail.title)

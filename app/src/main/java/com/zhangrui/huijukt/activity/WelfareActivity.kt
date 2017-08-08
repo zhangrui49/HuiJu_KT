@@ -8,7 +8,10 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
@@ -24,13 +27,9 @@ import com.zhangrui.huijukt.extensions.toast
 import com.zhangrui.huijukt.extensions.warn
 import com.zhangrui.huijukt.mvp.contract.WelfareContract
 import com.zhangrui.huijukt.mvp.presenter.WelfarePresenter
+import com.zhangrui.huijukt.widget.SpacesItemDecoration
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.activity_welfare.*
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
-import com.zhangrui.huijukt.widget.SpacesItemDecoration
 
 
 /**
@@ -40,7 +39,7 @@ import com.zhangrui.huijukt.widget.SpacesItemDecoration
 class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     var page = 1
     val PAGE_SIZE = 10
-    var welfareAdapter: WelfareAdapter? = null;
+    var welfareAdapter: WelfareAdapter? = null
     var list: ArrayList<GankData>? = null
 
     override fun showLoading() {
@@ -58,8 +57,11 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     }
 
     override fun showData(data: Gank) {
-        data.results?.let { list!!.addAll(it) };
-        welfareAdapter?.notifyDataSetChanged()
+        data.results?.let {
+            list!!.addAll(it)
+            welfareAdapter?.notifyItemRangeInserted(list?.size!! - it.size, it.size)
+        }
+
     }
 
     override fun generateLayoutId(): Int {
@@ -67,22 +69,22 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     }
 
     override fun generatePresenter(): WelfarePresenter {
-        return WelfarePresenter(this, this);
+        return WelfarePresenter(this, this)
     }
 
     override fun initView() {
         setSupportActionBar(toolbar)
         toolbar.title = "福利"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener {
             finish()
         }
         list = ArrayList<GankData>()
-        welfareAdapter = WelfareAdapter(this, R.layout.item_gank_img, list!!);
+        welfareAdapter = WelfareAdapter(this, R.layout.item_gank_img, list!!)
         val rxPermissions = RxPermissions(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             rxPermissions
-                    .request(Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .subscribe({ granted ->
                         if (granted) {
 
@@ -91,10 +93,21 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
                         }
                     })
         }
-        recyclerview.adapter = welfareAdapter;
+        recyclerview.adapter = welfareAdapter
+//        val flexboxLayoutManager = FlexboxLayoutManager(this).apply {
+//            flexWrap = FlexWrap.WRAP
+//            flexDirection = FlexDirection.ROW
+//            alignItems = AlignItems.STRETCH
+//        }
+//
+//        recyclerview.apply {
+//            layoutManager = flexboxLayoutManager
+//            adapter = welfareAdapter
+//        }
+        // getGankData()
         recyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val decoration = SpacesItemDecoration(16)
-        recyclerview.addItemDecoration(decoration)
+//        val decoration = SpacesItemDecoration(16)
+//        recyclerview.addItemDecoration(decoration)
         tkRefreshLayout.setHeaderView(ProgressLayout(this))
         tkRefreshLayout.setBottomHeight(180f.dip2px(this))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {

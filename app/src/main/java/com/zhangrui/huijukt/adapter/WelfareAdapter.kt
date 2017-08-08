@@ -1,9 +1,11 @@
 package com.zhangrui.huijukt.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.wingsofts.dragphotoview.DragPhotoView
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.bean.GankData
@@ -28,11 +30,16 @@ class WelfareAdapter(context: Context, layout: Int, list: ArrayList<GankData>) :
     }
 
     override fun convert(holder: ViewHolder?, t: GankData?, position: Int) {
-        var image = holder?.getView<ImageView>(R.id.image)
+        val image = holder?.getView<ImageView>(R.id.image)
+//        val lp = image?.layoutParams
+//        if (lp is FlexboxLayoutManager.LayoutParams) {
+//            lp.flexGrow = 1.0f
+//        }
         Glide.with(context)
-                //     .load(list!![position].url?.plus("?imageView2/0/w/100"))
-                .load(list!![position].url)
+                .load(list!![position].url?.plus("?imageView2/0/w/100"))
+                // .load(list!![position].url)
                 .into(image)
+
     }
 
 }
