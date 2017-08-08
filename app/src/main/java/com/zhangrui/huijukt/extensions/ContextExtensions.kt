@@ -36,6 +36,6 @@ fun AppCompatActivity.dismissProgress() {
     (supportFragmentManager.findFragmentByTag(ProgressFragment::class.java.simpleName) as ProgressFragment?)?.dismiss()
 }
 
-inline fun <reified T> T.debug(log: Any) {
-    Log.d(T::class.simpleName, log.toString())
+inline fun <reified T> T.debug(log: Any?) {
+    Log.e(T::class.simpleName, log.toString())
 }

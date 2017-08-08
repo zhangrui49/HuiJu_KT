@@ -15,7 +15,7 @@ class MoviePagerAdapter(fragmentManager: FragmentManager, list: ArrayList<Fragme
     }
 
     override fun getCount(): Int {
-        return mFragments!!?.size
+        return mFragments!!.size
     }
 
     override fun getItem(position: Int): Fragment {
