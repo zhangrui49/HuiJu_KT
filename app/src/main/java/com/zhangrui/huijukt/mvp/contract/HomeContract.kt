@@ -3,7 +3,6 @@ package com.zhangrui.huijukt.mvp.contract
 import android.content.Context
 import com.zhangrui.huijukt.base.BasePresenter
 import com.zhangrui.huijukt.base.BaseView
-import com.zhangrui.huijukt.bean.Gank
 
 /**
  * Created by zhangrui on 2017/7/20.

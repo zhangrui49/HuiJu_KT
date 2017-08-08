@@ -2,7 +2,7 @@ package com.zhangrui.huijukt.adapter
 
 import com.bumptech.glide.Glide
 import com.zhangrui.huijukt.R
-import com.zhangrui.huijukt.bean.GankDay
+import com.zhangrui.huijukt.bean.gank.GankDay
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate
 import com.zhy.adapter.recyclerview.base.ViewHolder
 

@@ -44,7 +44,7 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
                 .addNetworkInterceptor(
                         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .cache(cache)
-               // .addInterceptor(CacheInterceptor(context))
+                // .addInterceptor(CacheInterceptor(context))
                 .addNetworkInterceptor(CacheInterceptor(context))
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -92,6 +92,16 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
             return gankInstance!!
         }
 
+        fun getMeipaiClient(context: Context): RetrofitClient {
+            if (meipaiInstance == null) {
+                synchronized(RetrofitClient::class) {
+                    if (meipaiInstance == null) {
+                        meipaiInstance = RetrofitClient(context, Api.MeipaiApi.MEIPAI_BASE_URL)
+                    }
+                }
+            }
+            return meipaiInstance!!
+        }
     }
 
     fun <T> create(service: Class<T>?): T? {

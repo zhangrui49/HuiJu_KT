@@ -3,7 +3,7 @@
     <color name="colorPrimary">#0099CC</color>
     <color name="colorPrimaryDark">#048EDD</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorAccentAlpha77">#77FF4081</color>
+    <color name="colorAccentAlpha77">#770099cc</color>
 
     <color name="transparent">@android:color/transparent</color>
     <color name="white">@android:color/white</color>

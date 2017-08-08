@@ -3,7 +3,7 @@ package com.zhangrui.huijukt.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import com.zhangrui.huijukt.R
-import com.zhangrui.huijukt.bean.GankData
+import com.zhangrui.huijukt.bean.gank.GankData
 import com.zhy.adapter.recyclerview.CommonAdapter
 import com.zhy.adapter.recyclerview.base.ViewHolder
 

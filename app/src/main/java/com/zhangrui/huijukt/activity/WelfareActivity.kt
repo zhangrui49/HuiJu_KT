@@ -8,10 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.widget.ImageView
-import com.google.android.flexbox.AlignItems
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayoutManager
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
@@ -19,15 +15,14 @@ import com.tbruyelle.rxpermissions.RxPermissions
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.adapter.WelfareAdapter
 import com.zhangrui.huijukt.base.BaseActivity
-import com.zhangrui.huijukt.bean.Gank
-import com.zhangrui.huijukt.bean.GankData
+import com.zhangrui.huijukt.bean.gank.Gank
+import com.zhangrui.huijukt.bean.gank.GankData
 import com.zhangrui.huijukt.extensions.dip2px
 import com.zhangrui.huijukt.extensions.dismissProgress
 import com.zhangrui.huijukt.extensions.toast
 import com.zhangrui.huijukt.extensions.warn
 import com.zhangrui.huijukt.mvp.contract.WelfareContract
 import com.zhangrui.huijukt.mvp.presenter.WelfarePresenter
-import com.zhangrui.huijukt.widget.SpacesItemDecoration
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.activity_welfare.*
 

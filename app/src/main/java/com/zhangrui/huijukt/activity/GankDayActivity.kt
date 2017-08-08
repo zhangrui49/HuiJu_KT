@@ -1,8 +1,5 @@
 package com.zhangrui.huijukt.activity
 
-import android.content.Intent
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
@@ -15,7 +12,7 @@ import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.adapter.GankDayAdapter
 import com.zhangrui.huijukt.base.BaseActivity
-import com.zhangrui.huijukt.bean.GankDay
+import com.zhangrui.huijukt.bean.gank.GankDay
 import com.zhangrui.huijukt.extensions.dip2px
 import com.zhangrui.huijukt.mvp.contract.GankDayContract
 import com.zhangrui.huijukt.mvp.presenter.GankDayPresenter

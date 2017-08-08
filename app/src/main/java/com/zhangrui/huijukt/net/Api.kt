@@ -1,15 +1,15 @@
 package com.zhangrui.huijukt.net
 
 import retrofit2.http.GET
-import com.zhangrui.huijukt.bean.Gank
-import com.zhangrui.huijukt.bean.GankDay
-import com.zhangrui.huijukt.bean.douban.Avatars
+import com.zhangrui.huijukt.bean.gank.Gank
+import com.zhangrui.huijukt.bean.gank.GankDay
 import com.zhangrui.huijukt.bean.douban.Casts
 import com.zhangrui.huijukt.bean.douban.Movie
 import retrofit2.http.Path
 import rx.Observable
 import retrofit2.http.QueryMap
 import com.zhangrui.huijukt.bean.douban.MovieDetail
+import com.zhangrui.huijukt.bean.meipai.Video
 
 
 /**
@@ -45,6 +45,15 @@ class Api {
 
         @GET("celebrity/{id}")
         fun getCastDetail(@Path("id") id: String?): Observable<Casts>
+    }
+
+    interface MeipaiApi{
+        companion object {
+            val MEIPAI_BASE_URL="http://newapi.meipai.com/output/"
+        }
+
+        @GET("channels_topics_timeline.json")
+        fun getVideos(@QueryMap map: HashMap<String, Any>): Observable<List<Video>>
     }
 
 }

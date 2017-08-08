@@ -1,38 +1,34 @@
 package com.zhangrui.huijukt.fragment
 
-import android.Manifest
-import android.os.Build
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.lcodecore.tkrefreshlayout.header.progresslayout.ProgressLayout
-import com.tbruyelle.rxpermissions.RxPermissions
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.activity.WebActivity
-import com.zhangrui.huijukt.adapter.GankTabAdapter
+import com.zhangrui.huijukt.adapter.MeipaiTabAdapter
 import com.zhangrui.huijukt.base.BaseFragment
-import com.zhangrui.huijukt.bean.gank.Gank
-import com.zhangrui.huijukt.bean.gank.GankData
+import com.zhangrui.huijukt.bean.meipai.Video
 import com.zhangrui.huijukt.extensions.dip2px
-import com.zhangrui.huijukt.extensions.warn
-import com.zhangrui.huijukt.mvp.contract.GankTabContract
-import com.zhangrui.huijukt.mvp.presenter.GankTabPresenter
+import com.zhangrui.huijukt.mvp.contract.MeipaiTabContract
+import com.zhangrui.huijukt.mvp.presenter.MeipaiTabPresenter
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
-import kotlinx.android.synthetic.main.gank_data_layout.*
+import kotlinx.android.synthetic.main.common_data_layout.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
- * Created by zhangrui on 2017/7/20.
+ *
+ * Created by zhangrui on 2017/7/27.
  */
-class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
+class MeipaiTabFragment : BaseFragment<MeipaiTabPresenter>(), MeipaiTabContract.View {
+
+    var movieAdapter: MeipaiTabAdapter? = null
     var page = 1
     val PAGE_SIZE = 10
-    var gankTabAdapter: GankTabAdapter? = null;
-    var list: ArrayList<GankData>? = null
-
+    var list: ArrayList<Video>? = null
     override fun showLoading() {
     }
 
@@ -44,45 +40,32 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
         tkRefreshLayout.finishLoadmore()
     }
 
-    override fun showData(data: Gank) {
-        data.results?.let { list!!.addAll(it) };
-        gankTabAdapter?.notifyDataSetChanged()
+    override fun showData(data: List<Video>) {
+        data.let { list!!.addAll(it) }
+        movieAdapter?.notifyDataSetChanged()
     }
 
     override fun initView() {
-        list = ArrayList<GankData>()
-        gankTabAdapter = GankTabAdapter(ctx, R.layout.item_gank_data, list!!);
-        val rxPermissions = RxPermissions(activity)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val subscribe = rxPermissions
-                    .request(Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .subscribe({ granted ->
-                        if (granted) {
-
-                        } else {
-                            activity.warn("请授予网络权限!")
-                        }
-                    })
-        }
-        recyclerview.adapter = gankTabAdapter;
+        list = ArrayList<Video>()
+        movieAdapter = MeipaiTabAdapter(ctx, R.layout.item_video_tab, list!!)
+        recyclerview.adapter = movieAdapter
         recyclerview.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
         tkRefreshLayout.setHeaderView(ProgressLayout(ctx))
         tkRefreshLayout.setBottomHeight(180f.dip2px(ctx))
         tkRefreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
             override fun onRefresh(refreshLayout: TwinklingRefreshLayout?) {
-                page = 1;
+                page =1
                 list?.clear()
-                getGankData()
+                getMovieData()
             }
 
             override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
-                page++;
-
-                getGankData()
+                page++
+                getMovieData()
             }
         })
         tkRefreshLayout.startRefresh()
-        gankTabAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
+        movieAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
 
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
                 startActivity<WebActivity>("url" to list?.get(position)?.url.toString())
@@ -98,17 +81,17 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
         return R.layout.common_data_layout
     }
 
-    override fun generatePresenter(): GankTabPresenter {
-        return GankTabPresenter(ctx, this)
+    override fun generatePresenter(): MeipaiTabPresenter {
+        return MeipaiTabPresenter(ctx, this)
     }
 
-
-    fun getGankData() {
-        val type = arguments!!.getString("type")
-        mPresenter?.requestData(type, PAGE_SIZE, page)
+    fun getMovieData() {
+        val id = arguments!!.getString("id")
+        val map = HashMap<String, Any>()
+        map.put("id", id)
+        map.put("page", page)
+        map.put("count", PAGE_SIZE)
+        mPresenter?.requestData(map)
     }
 
-    fun refresh() {
-        tkRefreshLayout.startRefresh()
-    }
 }

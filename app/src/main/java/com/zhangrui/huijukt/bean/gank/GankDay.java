@@ -1,4 +1,4 @@
-package com.zhangrui.huijukt.bean;
+package com.zhangrui.huijukt.bean.gank;
 
 import java.util.ArrayList;
 import java.util.List;

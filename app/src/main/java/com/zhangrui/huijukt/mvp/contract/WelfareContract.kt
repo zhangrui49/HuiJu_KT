@@ -4,7 +4,7 @@ import android.content.Context
 import com.zhangrui.huijukt.base.BaseModel
 import com.zhangrui.huijukt.base.BasePresenter
 import com.zhangrui.huijukt.base.BaseView
-import com.zhangrui.huijukt.bean.Gank
+import com.zhangrui.huijukt.bean.gank.Gank
 
 /**
  * Created by zhangrui on 2017/7/13.

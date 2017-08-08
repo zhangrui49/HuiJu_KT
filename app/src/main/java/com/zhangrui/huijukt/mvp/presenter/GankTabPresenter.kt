@@ -1,9 +1,8 @@
 package com.zhangrui.huijukt.mvp.presenter
 
 import android.content.Context
-import android.util.Log
 import com.tt.lvruheng.eyepetizer.network.RetrofitClient
-import com.zhangrui.huijukt.bean.Gank
+import com.zhangrui.huijukt.bean.gank.Gank
 import com.zhangrui.huijukt.mvp.contract.GankTabContract
 import com.zhangrui.huijukt.net.Api
 import com.zhangrui.huijukt.net.ApiCallBack

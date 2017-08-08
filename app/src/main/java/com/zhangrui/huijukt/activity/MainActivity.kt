@@ -10,7 +10,7 @@ import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.base.BaseActivity
 import com.zhangrui.huijukt.fragment.GankFragment
 import com.zhangrui.huijukt.fragment.MovieFragment
-import com.zhangrui.huijukt.fragment.VideoFragment
+import com.zhangrui.huijukt.fragment.MeipaiFragment
 import com.zhangrui.huijukt.fragment.ZhihuFragment
 import com.zhangrui.huijukt.mvp.contract.HomeContract
 import com.zhangrui.huijukt.mvp.presenter.HomePresenter
@@ -24,10 +24,10 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
 //        setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle);
+        drawer_layout.addDrawerListener(toggle)
         nav_view.setNavigationItemSelectedListener(this)
-        toggle.syncState();
-        mFragment = MovieFragment()
+        toggle.syncState()
+        mFragment = MeipaiFragment()
         replaceFragment()
     }
 
@@ -41,7 +41,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START);
+            drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             // super.onBackPressed();
             moveTaskToBack(false)
@@ -59,7 +59,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
             mFragment = ZhihuFragment()
             replaceFragment()
         } else if (id == R.id.meipai) {
-            mFragment = VideoFragment()
+            mFragment = MeipaiFragment()
             replaceFragment()
         } else if (id == R.id.douban) {
             mFragment = MovieFragment()

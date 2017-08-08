@@ -2,7 +2,7 @@ package com.zhangrui.huijukt.mvp.presenter
 
 import android.content.Context
 import com.tt.lvruheng.eyepetizer.network.RetrofitClient
-import com.zhangrui.huijukt.bean.GankDay
+import com.zhangrui.huijukt.bean.gank.GankDay
 import com.zhangrui.huijukt.mvp.contract.GankDayContract
 import com.zhangrui.huijukt.net.Api
 import com.zhangrui.huijukt.net.ApiCallBack

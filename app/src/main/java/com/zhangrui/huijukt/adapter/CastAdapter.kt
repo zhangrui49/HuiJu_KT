@@ -4,15 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.wingsofts.dragphotoview.DragPhotoView
 import com.zhangrui.huijukt.R
-import com.zhangrui.huijukt.bean.GankData
-import com.zhangrui.huijukt.bean.douban.Avatars
 import com.zhangrui.huijukt.bean.douban.Casts
 import com.zhy.adapter.recyclerview.CommonAdapter
 import com.zhy.adapter.recyclerview.base.ViewHolder
-import org.jetbrains.anko.coroutines.experimental.asReference
-import uk.co.senab.photoview.PhotoView
 
 
 /**
