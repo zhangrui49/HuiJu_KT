@@ -6,7 +6,7 @@ import java.util.*
 /**
  * Created by zhangrui on 2017/7/11.
  */
-fun Long.toDateString(dateFormate: Int = DateFormat.MEDIUM): String {
-    val df = DateFormat.getDateInstance(dateFormate, Locale.getDefault())
+fun Long.toDateString(dateFormat: Int = DateFormat.MEDIUM): String {
+    val df = DateFormat.getDateInstance(dateFormat, Locale.getDefault())
     return df.format(this)
 }

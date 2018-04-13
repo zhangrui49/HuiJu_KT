@@ -87,7 +87,7 @@ class MovieTabFragment : BaseFragment<MovieTabPresenter>(), MovieTabContract.Vie
     }
 
     override fun generatePresenter(): MovieTabPresenter {
-        return MovieTabPresenter(ctx, this)
+        return MovieTabPresenter( this)
     }
 
     fun getMovieData() {

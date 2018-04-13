@@ -1,26 +1,25 @@
 package com.zhangrui.huijukt.mvp.presenter
 
 import android.content.Context
-import com.tt.lvruheng.eyepetizer.network.RetrofitClient
 import com.zhangrui.huijukt.bean.gank.GankDay
 import com.zhangrui.huijukt.mvp.contract.GankDayContract
 import com.zhangrui.huijukt.net.Api
 import com.zhangrui.huijukt.net.ApiCallBack
+import com.zhangrui.huijukt.net.RetrofitClient
 
 /**
  *
  * Created by zhangrui on 2017/7/21.
  */
-class GankDayPresenter(context: Context, view: GankDayContract.View) : GankDayContract.Presenter(context, view) {
+class GankDayPresenter(view: GankDayContract.View) : GankDayContract.Presenter( view) {
 
     init {
-        mContext = context
-        mView = view;
+        mView = view
     }
 
     override fun requestGankDayData(date: String) {
         mView?.showLoading();
-        addSubscription(RetrofitClient.getGankClient(mContext!!).create(Api.GankApi::class.java)!!.getGankDayData(date), object : ApiCallBack<GankDay>() {
+        addSubscription(RetrofitClient.getGankClient().create(Api.GankApi::class.java)!!.getGankDayData(date), object : ApiCallBack<GankDay>() {
 
             override fun onSuccess(data: GankDay) {
                 if (data.isError || data.category.size < 1) {

@@ -82,7 +82,7 @@ class MeipaiTabFragment : BaseFragment<MeipaiTabPresenter>(), MeipaiTabContract.
     }
 
     override fun generatePresenter(): MeipaiTabPresenter {
-        return MeipaiTabPresenter(ctx, this)
+        return MeipaiTabPresenter(this)
     }
 
     fun getMovieData() {

@@ -81,7 +81,7 @@ class MovieDetailActivity : BaseActivity<MovieDetailPresenter>(), MovieDetailCon
     }
 
     override fun generatePresenter(): MovieDetailPresenter {
-        return MovieDetailPresenter(this, this)
+        return MovieDetailPresenter(this)
     }
 
     override fun onBackPressed() {

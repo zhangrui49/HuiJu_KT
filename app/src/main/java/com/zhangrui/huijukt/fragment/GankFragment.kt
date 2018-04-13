@@ -6,9 +6,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.zhangrui.huijukt.R
 import com.zhangrui.huijukt.activity.GankDayActivity
 import com.zhangrui.huijukt.activity.WelfareActivity
@@ -35,7 +32,7 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
 
     override fun initView() {
         val list = ArrayList<Fragment>()
-        for (i in 0..TITLES.size - 1) {
+        for (i in 0 until TITLES.size) {
             val bundle = Bundle()
             bundle.putString("type", TITLES[i])
             val tabFragment = GankTabFragment()
@@ -92,7 +89,7 @@ class GankFragment : BaseFragment<GankPresenter>(), GankContract.View {
     }
 
     override fun generatePresenter(): GankPresenter {
-        return GankPresenter(ctx, this)
+        return GankPresenter(this)
     }
 
 }

@@ -1,20 +1,20 @@
 package com.zhangrui.huijukt.mvp.presenter
 
 import android.content.Context
-import com.tt.lvruheng.eyepetizer.network.RetrofitClient
 import com.zhangrui.huijukt.bean.gank.Gank
 import com.zhangrui.huijukt.mvp.contract.GankTabContract
 import com.zhangrui.huijukt.net.Api
 import com.zhangrui.huijukt.net.ApiCallBack
+import com.zhangrui.huijukt.net.RetrofitClient
 
 /**
  * Created by zhangrui on 2017/7/20.
  */
-class GankTabPresenter(context: Context,view: GankTabContract.View) :GankTabContract.Presenter(context,view) {
+class GankTabPresenter(view: GankTabContract.View) :GankTabContract.Presenter(view) {
 
     override fun requestData(path: String, pageSize: Int, page: Int) {
-        mView?.showLoading();
-        addSubscription(RetrofitClient.getGankClient(mContext!!).create(Api.GankApi::class.java)!!.getGankData(path, pageSize, page), object : ApiCallBack<Gank>() {
+        mView?.showLoading()
+        addSubscription(RetrofitClient.getGankClient().create(Api.GankApi::class.java)!!.getGankData(path, pageSize, page), object : ApiCallBack<Gank>() {
 
             override fun onSuccess(data: Gank) {
                 mView?.showData(data)

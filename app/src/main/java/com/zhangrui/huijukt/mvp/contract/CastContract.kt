@@ -18,7 +18,7 @@ class CastContract {
         fun showData(data: Casts)
     }
 
-    abstract class Presenter(context: Context, view: View) : BasePresenter<View>(context, view) {
+    abstract class Presenter( view: View) : BasePresenter<View>( view) {
         abstract fun requestData(id: String?)
     }
 }

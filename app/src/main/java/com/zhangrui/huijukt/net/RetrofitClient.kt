@@ -1,26 +1,21 @@
-package com.tt.lvruheng.eyepetizer.network
+package com.zhangrui.huijukt.net
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.util.Log
-import com.zhangrui.huijukt.net.Api
-import java.io.File
+import com.zhangrui.huijukt.App
 import okhttp3.Cache
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
-import javax.xml.datatype.DatatypeConstants.SECONDS
-import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.OkHttpClient
-import java.util.concurrent.TimeUnit
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 
 /**
- * Created by lvruheng on 2017/7/4.
  */
-class RetrofitClient private constructor(context: Context, baseUrl: String) {
+class RetrofitClient private constructor(baseUrl: String) {
     var httpCacheDirectory: File? = null
-    val mContext: Context = context
     var cache: Cache? = null
     var okHttpClient: OkHttpClient? = null
     var retrofit: Retrofit? = null
@@ -30,7 +25,7 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
     init {
         //缓存地址
         if (httpCacheDirectory == null) {
-            httpCacheDirectory = File(mContext.cacheDir, "app_cache")
+            httpCacheDirectory = File(App.instance.cacheDir, "app_cache")
         }
         try {
             if (cache == null) {
@@ -45,7 +40,7 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
                         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .cache(cache)
                 // .addInterceptor(CacheInterceptor(context))
-                .addNetworkInterceptor(CacheInterceptor(context))
+                .addNetworkInterceptor(CacheInterceptor())
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build()
@@ -60,47 +55,48 @@ class RetrofitClient private constructor(context: Context, baseUrl: String) {
     }
 
     companion object {
-        @SuppressLint("StaticFieldLeak")
-        @Volatile
+
+
         var gankInstance: RetrofitClient? = null
-        @SuppressLint("StaticFieldLeak")
-        @Volatile
+
+
         var doubanInstance: RetrofitClient? = null
-        @SuppressLint("StaticFieldLeak")
-        @Volatile
+
         var meipaiInstance: RetrofitClient? = null
 
-        fun getDoubanInstance(context: Context): RetrofitClient {
-            if (doubanInstance == null) {
-                synchronized(RetrofitClient::class) {
-                    if (doubanInstance == null) {
-                        doubanInstance = RetrofitClient(context, Api.DoubanApi.DOUBAN_BASE_URL)
-                    }
-                }
-            }
-            return doubanInstance!!
-        }
 
-        fun getGankClient(context: Context): RetrofitClient {
+
+        fun getGankClient(): RetrofitClient {
             if (gankInstance == null) {
                 synchronized(RetrofitClient::class) {
                     if (gankInstance == null) {
-                        gankInstance = RetrofitClient(context, Api.GankApi.GANK_BASE_URL)
+                        gankInstance = RetrofitClient(Api.GankApi.GANK_BASE_URL)
                     }
                 }
             }
             return gankInstance!!
         }
 
-        fun getMeipaiClient(context: Context): RetrofitClient {
+        fun getMeipaiClient(): RetrofitClient {
             if (meipaiInstance == null) {
                 synchronized(RetrofitClient::class) {
                     if (meipaiInstance == null) {
-                        meipaiInstance = RetrofitClient(context, Api.MeipaiApi.MEIPAI_BASE_URL)
+                        meipaiInstance = RetrofitClient(Api.MeipaiApi.MEIPAI_BASE_URL)
                     }
                 }
             }
             return meipaiInstance!!
+        }
+
+        fun getDoubanClient(): RetrofitClient{
+            if (doubanInstance == null) {
+                synchronized(RetrofitClient::class) {
+                    if (doubanInstance == null) {
+                        doubanInstance = RetrofitClient(Api.DoubanApi.DOUBAN_BASE_URL)
+                    }
+                }
+            }
+            return doubanInstance!!
         }
     }
 

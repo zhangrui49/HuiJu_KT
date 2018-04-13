@@ -10,6 +10,6 @@ import com.zhangrui.huijukt.base.BaseView
 class MeipaiContract {
     interface View : BaseView
 
-    abstract class Presenter(context: Context, view: View) : BasePresenter<View>(context, view)
+    abstract class Presenter( view: View) : BasePresenter<View>(view)
 
 }

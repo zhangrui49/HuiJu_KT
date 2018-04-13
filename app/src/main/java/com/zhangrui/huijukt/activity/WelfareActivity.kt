@@ -64,7 +64,7 @@ class WelfareActivity : BaseActivity<WelfarePresenter>(), WelfareContract.View {
     }
 
     override fun generatePresenter(): WelfarePresenter {
-        return WelfarePresenter(this, this)
+        return WelfarePresenter(this)
     }
 
     override fun initView() {

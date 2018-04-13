@@ -13,7 +13,7 @@ class HomeContract {
 
     }
 
-    abstract class Presenter(context: Context, view: HomeContract.View) : BasePresenter<View>(context,view){
+    abstract class Presenter( view: HomeContract.View) : BasePresenter<View>(view){
 
 
     }

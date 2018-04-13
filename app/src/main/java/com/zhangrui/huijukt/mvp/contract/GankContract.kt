@@ -11,7 +11,7 @@ import com.zhangrui.huijukt.base.BaseView
 class GankContract {
     interface View : BaseView
 
-    abstract class Presenter(context: Context, view: GankContract.View) : BasePresenter<View>(context, view)
+    abstract class Presenter( view: GankContract.View) : BasePresenter<View>( view)
 
     interface Model : BaseModel
 }

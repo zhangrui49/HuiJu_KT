@@ -17,12 +17,10 @@ class WelfareContract {
         fun showData(data: Gank)
     }
 
-    abstract class Presenter(context: Context, view:View) : BasePresenter<View>(context, view) {
+    abstract class Presenter(view:View) : BasePresenter<View>(view) {
 
-        abstract fun requestData(path: String, pageSize: Int, page: Int);
+        abstract fun requestData(path: String, pageSize: Int, page: Int)
     }
 
-    interface Model : BaseModel {
-
-    }
+    interface Model : BaseModel
 }

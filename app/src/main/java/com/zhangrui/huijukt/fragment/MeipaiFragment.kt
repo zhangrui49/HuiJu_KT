@@ -40,6 +40,6 @@ class MeipaiFragment : BaseFragment<MeipaiPresenter>(), MeipaiContract.View {
     }
 
     override fun generatePresenter(): MeipaiPresenter {
-        return MeipaiPresenter(ctx, this)
+        return MeipaiPresenter(this)
     }
 }

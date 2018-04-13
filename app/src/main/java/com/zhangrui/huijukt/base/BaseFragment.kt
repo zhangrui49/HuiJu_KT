@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.zhangrui.huijukt.R
 
 /**
  *
@@ -27,6 +26,8 @@ abstract class BaseFragment<T : BasePresenter<out BaseView>> : Fragment() {
         mPresenter = generatePresenter()
         initView()
     }
+
+
 
     abstract fun initView()
 

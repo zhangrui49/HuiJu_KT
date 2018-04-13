@@ -100,7 +100,7 @@ class GankDayActivity : BaseActivity<GankDayPresenter>(), GankDayContract.View, 
     }
 
     override fun generatePresenter(): GankDayPresenter {
-        return GankDayPresenter(this, this)
+        return GankDayPresenter( this)
     }
 
 

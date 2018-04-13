@@ -1,7 +1,8 @@
-package com.tt.lvruheng.eyepetizer.network
+package com.zhangrui.huijukt.net
 
 import android.content.Context
 import android.util.Log
+import com.zhangrui.huijukt.App
 import com.zhangrui.huijukt.util.Utils
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -12,11 +13,10 @@ import okhttp3.CacheControl
 /**
  * Created by lvruheng on 2017/7/4.
  */
-class CacheInterceptor(context: Context) : Interceptor{
-    val mContext = context
+class CacheInterceptor : Interceptor{
     override fun intercept(chain: Interceptor.Chain?): Response? {
         var request = chain?.request()
-        if (Utils.isNetworkAvailable(mContext)) {
+        if (Utils.isNetworkAvailable(App.instance)) {
             val response = chain?.proceed(request)
             // read from cache for 60 s
             val maxAge = 60

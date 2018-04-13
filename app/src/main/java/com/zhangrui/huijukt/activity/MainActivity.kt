@@ -36,7 +36,7 @@ class MainActivity : BaseActivity<HomePresenter>(), HomeContract.View, Navigatio
     }
 
     override fun generatePresenter(): HomePresenter {
-        return HomePresenter(this, this)
+        return HomePresenter(this)
     }
 
     override fun onBackPressed() {

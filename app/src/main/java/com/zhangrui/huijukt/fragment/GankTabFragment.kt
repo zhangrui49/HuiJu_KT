@@ -99,7 +99,7 @@ class GankTabFragment : BaseFragment<GankTabPresenter>(), GankTabContract.View {
     }
 
     override fun generatePresenter(): GankTabPresenter {
-        return GankTabPresenter(ctx, this)
+        return GankTabPresenter( this)
     }
 
 

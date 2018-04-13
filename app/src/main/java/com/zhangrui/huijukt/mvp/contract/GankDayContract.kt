@@ -18,7 +18,7 @@ class GankDayContract {
         fun showEmpty()
     }
 
-    abstract class Presenter(context: Context, view: View) : BasePresenter<View>(context, view) {
+    abstract class Presenter(view: View) : BasePresenter<View>(view) {
         abstract fun requestGankDayData(
                 date: String)
     }

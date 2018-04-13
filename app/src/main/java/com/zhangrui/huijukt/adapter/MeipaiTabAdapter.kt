@@ -21,6 +21,7 @@ import com.zhy.adapter.recyclerview.CommonAdapter
 import com.zhy.adapter.recyclerview.base.ViewHolder
 import io.supercharge.shimmerlayout.ShimmerLayout
 import org.jetbrains.anko.runOnUiThread
+import java.util.*
 
 
 /**

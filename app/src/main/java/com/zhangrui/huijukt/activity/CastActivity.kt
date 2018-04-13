@@ -73,7 +73,7 @@ class CastActivity : BaseActivity<CastPresenter>(), CastContract.View {
     }
 
     override fun generatePresenter(): CastPresenter {
-        return CastPresenter(this, this)
+        return CastPresenter(this)
     }
 
     companion object {
