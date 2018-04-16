@@ -9,12 +9,7 @@ import com.zhangrui.huijukt.base.BaseView
  */
 class HomeContract {
 
-    interface View : BaseView {
+    interface View : BaseView
 
-    }
-
-    abstract class Presenter( view: HomeContract.View) : BasePresenter<View>(view){
-
-
-    }
+    abstract class Presenter(view: View): BasePresenter<View>(view)
 }

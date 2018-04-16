@@ -17,7 +17,7 @@ class MovieTabContract {
         fun showData(data: Movie)
     }
 
-    abstract class Presenter( view: MovieTabContract.View) : BasePresenter<View>(view) {
+    abstract class Presenter(view: View): BasePresenter<View>(view){
         abstract fun requestData(type: String, map: HashMap<String, Any>)
     }
 }

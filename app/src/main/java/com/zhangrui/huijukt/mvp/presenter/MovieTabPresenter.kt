@@ -11,7 +11,7 @@ import com.zhangrui.huijukt.net.RetrofitClient
  *
  * Created by zhangrui on 2017/7/27.
  */
-class MovieTabPresenter(view: MovieTabContract.View) : MovieTabContract.Presenter(view) {
+class MovieTabPresenter (view: MovieTabContract.View): MovieTabContract.Presenter(view) {
 
     override fun requestData(type: String, map: HashMap<String, Any>) {
         mView?.showLoading()

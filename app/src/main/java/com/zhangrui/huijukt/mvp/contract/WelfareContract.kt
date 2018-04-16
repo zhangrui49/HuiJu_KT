@@ -17,7 +17,7 @@ class WelfareContract {
         fun showData(data: Gank)
     }
 
-    abstract class Presenter(view:View) : BasePresenter<View>(view) {
+    abstract class Presenter(view: View) : BasePresenter<View>(view) {
 
         abstract fun requestData(path: String, pageSize: Int, page: Int)
     }

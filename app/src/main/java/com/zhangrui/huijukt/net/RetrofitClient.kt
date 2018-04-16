@@ -19,7 +19,7 @@ class RetrofitClient private constructor(baseUrl: String) {
     var cache: Cache? = null
     var okHttpClient: OkHttpClient? = null
     var retrofit: Retrofit? = null
-    val DEFAULT_TIMEOUT: Long = 20
+    val DEFAULT_TIMEOUT: Long = 15
     val url = baseUrl
 
     init {
@@ -58,7 +58,6 @@ class RetrofitClient private constructor(baseUrl: String) {
 
 
         var gankInstance: RetrofitClient? = null
-
 
         var doubanInstance: RetrofitClient? = null
 

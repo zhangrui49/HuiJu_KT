@@ -1,5 +1,6 @@
 package com.zhangrui.huijukt.base
 
+import android.content.Context
 import rx.Observable
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -11,11 +12,18 @@ import rx.subscriptions.CompositeSubscription
  *
  * Created by zhangrui on 2017/7/13.
  */
-abstract class BasePresenter<V : BaseView> {
-    private var mCompositeSubscription: CompositeSubscription? = null
+abstract class BasePresenter<V : BaseView>(view: V) {
+    var mView: V? = null
+    var mContext: Context? = null
+    var mCompositeSubscription: CompositeSubscription? = null
 
     fun detachView() {
+        this.mView = null
         onUnsubscribe()
+    }
+
+    init {
+        mView = view
     }
 
     private fun onUnsubscribe() {

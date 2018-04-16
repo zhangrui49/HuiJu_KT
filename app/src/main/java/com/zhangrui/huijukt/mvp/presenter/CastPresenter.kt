@@ -11,7 +11,7 @@ import com.zhangrui.huijukt.net.RetrofitClient
  *
  * Created by zhangrui on 2017/7/27.
  */
-class CastPresenter( view: CastContract.View) : CastContract.Presenter(view) {
+class CastPresenter(view: CastContract.View) : CastContract.Presenter(view) {
 
     override fun requestData(id: String?) {
         mView?.showLoading()

@@ -14,9 +14,6 @@ import com.zhangrui.huijukt.net.RetrofitClient
  */
 class WelfarePresenter(view: WelfareContract.View) : WelfareContract.Presenter(view) {
 
-    init {
-        mView = view
-    }
 
     override fun requestData(path: String, pageSize: Int, page: Int) {
         mView?.showLoading();

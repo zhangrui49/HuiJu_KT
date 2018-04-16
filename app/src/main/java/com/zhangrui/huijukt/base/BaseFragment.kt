@@ -28,7 +28,6 @@ abstract class BaseFragment<T : BasePresenter<out BaseView>> : Fragment() {
     }
 
 
-
     abstract fun initView()
 
     abstract fun generateLayoutId(): Int

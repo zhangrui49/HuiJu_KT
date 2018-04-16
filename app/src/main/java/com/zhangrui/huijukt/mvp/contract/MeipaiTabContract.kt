@@ -18,7 +18,7 @@ class MeipaiTabContract {
         fun showData(data: List<Video>)
     }
 
-    abstract class Presenter( view: View) : BasePresenter<View>(view) {
+    abstract class Presenter(view: View) : BasePresenter<View>(view) {
         abstract fun requestData(map: HashMap<String, Any>)
     }
 }

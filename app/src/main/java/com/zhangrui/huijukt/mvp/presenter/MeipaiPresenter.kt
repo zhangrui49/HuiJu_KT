@@ -8,4 +8,4 @@ import com.zhangrui.huijukt.mvp.contract.MeipaiContract
  *
  * Created by zhangrui on 2017/7/13.
  */
-class MeipaiPresenter( view: MeipaiContract.View) : MeipaiContract.Presenter( view)
+class MeipaiPresenter(view: MeipaiContract.View) : MeipaiContract.Presenter(view)

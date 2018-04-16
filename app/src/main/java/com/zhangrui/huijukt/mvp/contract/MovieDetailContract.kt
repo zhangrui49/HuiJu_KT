@@ -18,7 +18,7 @@ class MovieDetailContract {
         fun showData(data: MovieDetail)
     }
 
-    abstract class Presenter( view: MovieDetailContract.View) : BasePresenter<View>(view) {
+    abstract class Presenter(view: View): BasePresenter<View>(view) {
         abstract fun requestData(id: String)
     }
 }

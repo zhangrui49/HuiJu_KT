@@ -11,7 +11,7 @@ import com.zhangrui.huijukt.net.RetrofitClient
  *
  * Created by zhangrui on 2017/7/27.
  */
-class MovieDetailPresenter( view: MovieDetailContract.View) : MovieDetailContract.Presenter(view) {
+class MovieDetailPresenter (view: MovieDetailContract.View): MovieDetailContract.Presenter(view) {
 
     override fun requestData(id: String) {
         mView?.showLoading()

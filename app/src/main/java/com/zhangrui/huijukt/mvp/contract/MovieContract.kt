@@ -11,5 +11,5 @@ import com.zhangrui.huijukt.base.BaseView
 class MovieContract {
     interface View : BaseView
 
-    abstract class Presenter(view: MovieContract.View) : BasePresenter<View>(view)
+    abstract class Presenter(view: View): BasePresenter<View>(view)
 }

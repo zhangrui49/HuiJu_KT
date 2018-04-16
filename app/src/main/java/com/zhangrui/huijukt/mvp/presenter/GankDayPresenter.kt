@@ -11,11 +11,8 @@ import com.zhangrui.huijukt.net.RetrofitClient
  *
  * Created by zhangrui on 2017/7/21.
  */
-class GankDayPresenter(view: GankDayContract.View) : GankDayContract.Presenter( view) {
+class GankDayPresenter(view: GankDayContract.View): GankDayContract.Presenter(view) {
 
-    init {
-        mView = view
-    }
 
     override fun requestGankDayData(date: String) {
         mView?.showLoading();
